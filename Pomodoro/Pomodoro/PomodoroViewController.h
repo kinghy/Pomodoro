@@ -1,5 +1,5 @@
 //
-//  PromodoroViewController.h
+//  PomodoroViewController.h
 //  Pomodoro
 //
 //  Created by  rjt on 16/6/28.
@@ -7,7 +7,8 @@
 //
 
 #import "EFHeader.h" 
+#import "PomodoroModel.h"
 
-@interface PromodoroViewController : EFSimpleViewController
+@interface PomodoroViewController : EFSimpleViewController
 
 @end

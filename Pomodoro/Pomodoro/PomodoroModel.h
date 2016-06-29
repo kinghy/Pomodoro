@@ -1,5 +1,5 @@
 //
-//  PromodoroModel.h
+//  PomodoroModel.h
 //  Pomodoro
 //
 //  Created by  rjt on 16/6/28.
@@ -9,34 +9,33 @@
 #import "EFHeader.h"
 
 typedef enum{
-    ClockTypePromodoro,
+    ClockTypePomodoro,
     ClockTypeLongReset,
     ClockTypeShortReset,
-} PromodoroClockType;
+} PomodoroClockType;
 
-@interface PromodoroModel : EFBaseViewModel
+@interface PomodoroModel : EFBaseViewModel
+@property (nonatomic,strong) NSNumber* remainingTime;//剩余时间，秒
+@property (nonatomic,readonly) PomodoroClockType clockType;//时钟类型
 
-@property (nonatomic,readonly) NSInteger remainingTime;//剩余时间，毫秒
-@property (nonatomic,readonly) PromodoroClockType clockType;//时钟类型
-
-@property (nonatomic) int promodoroDuration;//一个番茄是时间，单位分钟
+@property (nonatomic) int pomodoroDuration;//一个番茄是时间，单位分钟
 @property (nonatomic) int resetShortDuration;//一个短休时间，单位分钟
 @property (nonatomic) int resetLongDuration;//一个长休时间，单位分钟
 
 /*!
  *  @brief 开始番茄时间
  */
--(void)startPromodoroTime;
+-(void)startPomodoroTime;
 
 /*!
  *  @brief 停止番茄时间
  */
--(void)stopPromodoroTime;
+-(void)stopPomodoroTime;
 
 /*!
  *  @brief 暂停番茄时间
  */
--(void)pausePromodoroTime;
+-(void)pausePomodoroTime;
 
 /*!
  *  @brief 开始长休息

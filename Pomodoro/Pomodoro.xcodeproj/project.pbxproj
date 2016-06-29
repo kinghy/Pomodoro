@@ -14,9 +14,13 @@
 		7CC2B3121D224A6F00032751 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3101D224A6F00032751 /* LaunchScreen.storyboard */; };
 		7CC2B31D1D224A6F00032751 /* PomodoroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B31C1D224A6F00032751 /* PomodoroTests.m */; };
 		7CC2B3281D224A6F00032751 /* PomodoroUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B3271D224A6F00032751 /* PomodoroUITests.m */; };
-		7CC2B3381D224C9C00032751 /* PromodoroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B3361D224C9C00032751 /* PromodoroViewController.m */; };
-		7CC2B3391D224C9C00032751 /* PromodoroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3371D224C9C00032751 /* PromodoroViewController.xib */; };
-		7CC2B33C1D224EDC00032751 /* PromodoroModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B33B1D224EDC00032751 /* PromodoroModel.m */; };
+		7CC2B3381D224C9C00032751 /* PomodoroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B3361D224C9C00032751 /* PomodoroViewController.m */; };
+		7CC2B3391D224C9C00032751 /* PomodoroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3371D224C9C00032751 /* PomodoroViewController.xib */; };
+		7CC2B33C1D224EDC00032751 /* PomodoroModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B33B1D224EDC00032751 /* PomodoroModel.m */; };
+		7CC2B33F1D2375CB00032751 /* DDLogUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B33E1D2375CB00032751 /* DDLogUtil.m */; };
+		7CC2B3421D23B34300032751 /* pomodoro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3411D23B34300032751 /* pomodoro.jpg */; };
+		7CC2B3441D23BC9A00032751 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC2B3431D23BC9A00032751 /* AudioToolbox.framework */; };
+		7CC2B3541D23C78000032751 /* msg.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3531D23C78000032751 /* msg.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,11 +54,18 @@
 		7CC2B3231D224A6F00032751 /* PomodoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC2B3271D224A6F00032751 /* PomodoroUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomodoroUITests.m; sourceTree = "<group>"; };
 		7CC2B3291D224A6F00032751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7CC2B3351D224C9C00032751 /* PromodoroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromodoroViewController.h; sourceTree = "<group>"; };
-		7CC2B3361D224C9C00032751 /* PromodoroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromodoroViewController.m; sourceTree = "<group>"; };
-		7CC2B3371D224C9C00032751 /* PromodoroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromodoroViewController.xib; sourceTree = "<group>"; };
-		7CC2B33A1D224EDC00032751 /* PromodoroModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromodoroModel.h; sourceTree = "<group>"; };
-		7CC2B33B1D224EDC00032751 /* PromodoroModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromodoroModel.m; sourceTree = "<group>"; };
+		7CC2B3351D224C9C00032751 /* PomodoroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroViewController.h; sourceTree = "<group>"; };
+		7CC2B3361D224C9C00032751 /* PomodoroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroViewController.m; sourceTree = "<group>"; };
+		7CC2B3371D224C9C00032751 /* PomodoroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PomodoroViewController.xib; sourceTree = "<group>"; };
+		7CC2B33A1D224EDC00032751 /* PomodoroModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroModel.h; sourceTree = "<group>"; };
+		7CC2B33B1D224EDC00032751 /* PomodoroModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroModel.m; sourceTree = "<group>"; };
+		7CC2B33D1D2375CB00032751 /* DDLogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLogUtil.h; sourceTree = "<group>"; };
+		7CC2B33E1D2375CB00032751 /* DDLogUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLogUtil.m; sourceTree = "<group>"; };
+		7CC2B3401D23763600032751 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		7CC2B3411D23B34300032751 /* pomodoro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pomodoro.jpg; sourceTree = "<group>"; };
+		7CC2B3431D23BC9A00032751 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7CC2B3451D23C3D400032751 /* ring.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.aac; sourceTree = "<group>"; };
+		7CC2B3531D23C78000032751 /* msg.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = msg.wav; sourceTree = "<group>"; };
 		807406414B354486DFCF313F /* Pods-Pomodoro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Pomodoro/Pods-Pomodoro.release.xcconfig"; sourceTree = "<group>"; };
 		807F753D63A0DEC2509A19C3 /* Pods-Pomodoro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Pomodoro/Pods-Pomodoro.debug.xcconfig"; sourceTree = "<group>"; };
 		EC8E70FC6655036DC9DEA237 /* libPods-Pomodoro.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pomodoro.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC2B3441D23BC9A00032751 /* AudioToolbox.framework in Frameworks */,
 				46B611944C47E81167C2FC7C /* libPods-Pomodoro.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +101,7 @@
 		1F5FFE8A4100DE7F1C28654A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CC2B3431D23BC9A00032751 /* AudioToolbox.framework */,
 				EC8E70FC6655036DC9DEA237 /* libPods-Pomodoro.a */,
 			);
 			name = Frameworks;
@@ -134,11 +147,16 @@
 				7CC2B3101D224A6F00032751 /* LaunchScreen.storyboard */,
 				7CC2B3131D224A6F00032751 /* Info.plist */,
 				7CC2B3021D224A6F00032751 /* Supporting Files */,
-				7CC2B3351D224C9C00032751 /* PromodoroViewController.h */,
-				7CC2B3361D224C9C00032751 /* PromodoroViewController.m */,
-				7CC2B3371D224C9C00032751 /* PromodoroViewController.xib */,
-				7CC2B33A1D224EDC00032751 /* PromodoroModel.h */,
-				7CC2B33B1D224EDC00032751 /* PromodoroModel.m */,
+				7CC2B3351D224C9C00032751 /* PomodoroViewController.h */,
+				7CC2B3361D224C9C00032751 /* PomodoroViewController.m */,
+				7CC2B3371D224C9C00032751 /* PomodoroViewController.xib */,
+				7CC2B33A1D224EDC00032751 /* PomodoroModel.h */,
+				7CC2B33B1D224EDC00032751 /* PomodoroModel.m */,
+				7CC2B33D1D2375CB00032751 /* DDLogUtil.h */,
+				7CC2B33E1D2375CB00032751 /* DDLogUtil.m */,
+				7CC2B3411D23B34300032751 /* pomodoro.jpg */,
+				7CC2B3531D23C78000032751 /* msg.wav */,
+				7CC2B3451D23C3D400032751 /* ring.aac */,
 			);
 			path = Pomodoro;
 			sourceTree = "<group>";
@@ -147,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				7CC2B3031D224A6F00032751 /* main.m */,
+				7CC2B3401D23763600032751 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -275,8 +294,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC2B3541D23C78000032751 /* msg.wav in Resources */,
 				7CC2B3121D224A6F00032751 /* LaunchScreen.storyboard in Resources */,
-				7CC2B3391D224C9C00032751 /* PromodoroViewController.xib in Resources */,
+				7CC2B3391D224C9C00032751 /* PomodoroViewController.xib in Resources */,
+				7CC2B3421D23B34300032751 /* pomodoro.jpg in Resources */,
 				7CC2B30F1D224A6F00032751 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,9 +371,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CC2B3381D224C9C00032751 /* PromodoroViewController.m in Sources */,
-				7CC2B33C1D224EDC00032751 /* PromodoroModel.m in Sources */,
+				7CC2B3381D224C9C00032751 /* PomodoroViewController.m in Sources */,
+				7CC2B33C1D224EDC00032751 /* PomodoroModel.m in Sources */,
 				7CC2B3071D224A6F00032751 /* AppDelegate.m in Sources */,
+				7CC2B33F1D2375CB00032751 /* DDLogUtil.m in Sources */,
 				7CC2B3041D224A6F00032751 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +507,8 @@
 			baseConfigurationReference = 807F753D63A0DEC2509A19C3 /* Pods-Pomodoro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pomodoro/PrefixHeader.pch;
 				INFOPLIST_FILE = Pomodoro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = www.Pomodoro;
@@ -498,6 +522,8 @@
 			baseConfigurationReference = 807406414B354486DFCF313F /* Pods-Pomodoro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pomodoro/PrefixHeader.pch;
 				INFOPLIST_FILE = Pomodoro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = www.Pomodoro;
