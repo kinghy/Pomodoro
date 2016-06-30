@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		46B611944C47E81167C2FC7C /* libPods-Pomodoro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8E70FC6655036DC9DEA237 /* libPods-Pomodoro.a */; };
+		7C974BB31D24AEDD0025411A /* Let it go.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BAC1D24AEDD0025411A /* Let it go.caf */; };
+		7C974BB41D24AEDD0025411A /* Piano.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BAD1D24AEDD0025411A /* Piano.caf */; };
+		7C974BB51D24AEDD0025411A /* we are the world.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BAE1D24AEDD0025411A /* we are the world.caf */; };
+		7C974BB61D24AEDD0025411A /* Yellow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BAF1D24AEDD0025411A /* Yellow.caf */; };
+		7C974BB71D24AEDD0025411A /* 命运交响曲.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BB01D24AEDD0025411A /* 命运交响曲.caf */; };
+		7C974BB81D24AEDD0025411A /* 梦幻.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BB11D24AEDD0025411A /* 梦幻.caf */; };
+		7C974BB91D24AEDD0025411A /* 欢乐颂.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BB21D24AEDD0025411A /* 欢乐颂.caf */; };
+		7C974BBB1D24B5FE0025411A /* pomodoro.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BBA1D24B5FE0025411A /* pomodoro.png */; };
 		7CC2B3041D224A6F00032751 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B3031D224A6F00032751 /* main.m */; };
 		7CC2B3071D224A6F00032751 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B3061D224A6F00032751 /* AppDelegate.m */; };
 		7CC2B30F1D224A6F00032751 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B30E1D224A6F00032751 /* Assets.xcassets */; };
@@ -18,9 +26,7 @@
 		7CC2B3391D224C9C00032751 /* PomodoroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3371D224C9C00032751 /* PomodoroViewController.xib */; };
 		7CC2B33C1D224EDC00032751 /* PomodoroModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B33B1D224EDC00032751 /* PomodoroModel.m */; };
 		7CC2B33F1D2375CB00032751 /* DDLogUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B33E1D2375CB00032751 /* DDLogUtil.m */; };
-		7CC2B3421D23B34300032751 /* pomodoro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3411D23B34300032751 /* pomodoro.jpg */; };
 		7CC2B3441D23BC9A00032751 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC2B3431D23BC9A00032751 /* AudioToolbox.framework */; };
-		7CC2B3541D23C78000032751 /* msg.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2B3531D23C78000032751 /* msg.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C974BAC1D24AEDD0025411A /* Let it go.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Let it go.caf"; sourceTree = "<group>"; };
+		7C974BAD1D24AEDD0025411A /* Piano.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Piano.caf; sourceTree = "<group>"; };
+		7C974BAE1D24AEDD0025411A /* we are the world.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "we are the world.caf"; sourceTree = "<group>"; };
+		7C974BAF1D24AEDD0025411A /* Yellow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Yellow.caf; sourceTree = "<group>"; };
+		7C974BB01D24AEDD0025411A /* 命运交响曲.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "命运交响曲.caf"; sourceTree = "<group>"; };
+		7C974BB11D24AEDD0025411A /* 梦幻.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "梦幻.caf"; sourceTree = "<group>"; };
+		7C974BB21D24AEDD0025411A /* 欢乐颂.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "欢乐颂.caf"; sourceTree = "<group>"; };
+		7C974BBA1D24B5FE0025411A /* pomodoro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pomodoro.png; sourceTree = "<group>"; };
+		7C974BBC1D24BD6F0025411A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7CC2B2FF1D224A6F00032751 /* Pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC2B3031D224A6F00032751 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7CC2B3051D224A6F00032751 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,10 +77,7 @@
 		7CC2B33D1D2375CB00032751 /* DDLogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLogUtil.h; sourceTree = "<group>"; };
 		7CC2B33E1D2375CB00032751 /* DDLogUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLogUtil.m; sourceTree = "<group>"; };
 		7CC2B3401D23763600032751 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		7CC2B3411D23B34300032751 /* pomodoro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pomodoro.jpg; sourceTree = "<group>"; };
 		7CC2B3431D23BC9A00032751 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		7CC2B3451D23C3D400032751 /* ring.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.aac; sourceTree = "<group>"; };
-		7CC2B3531D23C78000032751 /* msg.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = msg.wav; sourceTree = "<group>"; };
 		807406414B354486DFCF313F /* Pods-Pomodoro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Pomodoro/Pods-Pomodoro.release.xcconfig"; sourceTree = "<group>"; };
 		807F753D63A0DEC2509A19C3 /* Pods-Pomodoro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Pomodoro/Pods-Pomodoro.debug.xcconfig"; sourceTree = "<group>"; };
 		EC8E70FC6655036DC9DEA237 /* libPods-Pomodoro.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pomodoro.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +113,7 @@
 		1F5FFE8A4100DE7F1C28654A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C974BBC1D24BD6F0025411A /* AVFoundation.framework */,
 				7CC2B3431D23BC9A00032751 /* AudioToolbox.framework */,
 				EC8E70FC6655036DC9DEA237 /* libPods-Pomodoro.a */,
 			);
@@ -114,6 +127,20 @@
 				807406414B354486DFCF313F /* Pods-Pomodoro.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7C974BAB1D24AEDD0025411A /* Ring */ = {
+			isa = PBXGroup;
+			children = (
+				7C974BAC1D24AEDD0025411A /* Let it go.caf */,
+				7C974BAD1D24AEDD0025411A /* Piano.caf */,
+				7C974BAE1D24AEDD0025411A /* we are the world.caf */,
+				7C974BAF1D24AEDD0025411A /* Yellow.caf */,
+				7C974BB01D24AEDD0025411A /* 命运交响曲.caf */,
+				7C974BB11D24AEDD0025411A /* 梦幻.caf */,
+				7C974BB21D24AEDD0025411A /* 欢乐颂.caf */,
+			);
+			path = Ring;
 			sourceTree = "<group>";
 		};
 		7CC2B2F61D224A6F00032751 = {
@@ -141,6 +168,8 @@
 		7CC2B3011D224A6F00032751 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				7C974BBA1D24B5FE0025411A /* pomodoro.png */,
+				7C974BAB1D24AEDD0025411A /* Ring */,
 				7CC2B3051D224A6F00032751 /* AppDelegate.h */,
 				7CC2B3061D224A6F00032751 /* AppDelegate.m */,
 				7CC2B30E1D224A6F00032751 /* Assets.xcassets */,
@@ -154,9 +183,6 @@
 				7CC2B33B1D224EDC00032751 /* PomodoroModel.m */,
 				7CC2B33D1D2375CB00032751 /* DDLogUtil.h */,
 				7CC2B33E1D2375CB00032751 /* DDLogUtil.m */,
-				7CC2B3411D23B34300032751 /* pomodoro.jpg */,
-				7CC2B3531D23C78000032751 /* msg.wav */,
-				7CC2B3451D23C3D400032751 /* ring.aac */,
 			);
 			path = Pomodoro;
 			sourceTree = "<group>";
@@ -294,11 +320,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CC2B3541D23C78000032751 /* msg.wav in Resources */,
+				7C974BB41D24AEDD0025411A /* Piano.caf in Resources */,
 				7CC2B3121D224A6F00032751 /* LaunchScreen.storyboard in Resources */,
 				7CC2B3391D224C9C00032751 /* PomodoroViewController.xib in Resources */,
-				7CC2B3421D23B34300032751 /* pomodoro.jpg in Resources */,
+				7C974BB71D24AEDD0025411A /* 命运交响曲.caf in Resources */,
+				7C974BB81D24AEDD0025411A /* 梦幻.caf in Resources */,
+				7C974BBB1D24B5FE0025411A /* pomodoro.png in Resources */,
+				7C974BB51D24AEDD0025411A /* we are the world.caf in Resources */,
+				7C974BB91D24AEDD0025411A /* 欢乐颂.caf in Resources */,
 				7CC2B30F1D224A6F00032751 /* Assets.xcassets in Resources */,
+				7C974BB61D24AEDD0025411A /* Yellow.caf in Resources */,
+				7C974BB31D24AEDD0025411A /* Let it go.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@
 
 @property (nonatomic,strong) CAShapeLayer *timeLayer;
 @property (weak, nonatomic) IBOutlet UIImageView *pomodoroImg;
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
 @end
 
@@ -27,43 +28,15 @@
 //}
 
 - (void)viewDidLoad {
+    self.viewModel = [PomodoroModel viewModel];
     [super viewDidLoad];
 //    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-//    SystemSoundID soundID;
-//    NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"msg" ofType:@"wav"];
-//    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
-//    AudioServicesPlaySystemSound(soundID);
+
     
     // Do any additional setup after loading the view from its nib.
-    self.viewModel = [PomodoroModel viewModel];
 
-    __weak PomodoroModel* model = (PomodoroModel*)self.viewModel ;
-    [model startPomodoroTime];
-    [[RACObserve(model,remainingTime) map:^id(NSNumber* value) {
-        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"mm:ss"];
-        return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:value.integerValue]];
-    }] subscribeNext:^(id x) {
-        NSLog(@"%f,%f",self.timeLayer.strokeStart,self.timeLayer.strokeEnd);
-        if (model.remainingTime.integerValue>0) {
-            self.pomodoroImg.hidden = YES;
-            self.timeLabel.hidden = NO;
-        }else{
-            self.pomodoroImg.hidden = NO;
-            self.timeLabel.hidden = YES;
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-//            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-        }
-        self.timeLabel.text = (model.remainingTime.intValue>0)?x:@"番茄时间";
-        self.timeLayer.strokeStart += 1.f/(model.pomodoroDuration*60);
-        if (model.remainingTime.integerValue%2) {
-            self.timeLayer.strokeColor = [UIColor blueColor].CGColor;
-        }else{
-            self.timeLayer.strokeColor = [UIColor redColor].CGColor;
-        }
-    }];
     
+    [self alarm];
     //创建出CAShapeLayer
     self.timeLayer = [CAShapeLayer layer];
     self.timeLayer.frame = self.timeView.bounds;//设置shapeLayer的尺寸和位置
@@ -79,7 +52,22 @@
     //让贝塞尔曲线与CAShapeLayer产生联系
     self.timeLayer.path = circlePath.CGPath;
     [self.timeView.layer addSublayer:self.timeLayer];
-    
+}
+
+-(void)bindViewModel{
+    if (self.viewModel) {
+        __weak PomodoroModel* model = (PomodoroModel*)self.viewModel ;
+        @weakify(self)
+        [RACObserve(model,remainingTime) subscribeNext:^(NSNumber* time) {
+            @strongify(self)
+            [self tickTackWithTime:time andDuration:model.pomodoroDuration];
+        }];
+        self.startBtn.rac_command = model.startCmd;
+        [self.startBtn.rac_command.executionSignals subscribeNext:^(id x) {
+            [self setLocalNotification:[NSDate dateWithTimeIntervalSinceNow:model.pomodoroDuration]];
+        }];
+
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,11 +85,134 @@
 }
 */
 
-- (RACSignal *)createSignal{
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSLog(@"signal created");
-        return nil;
+/*!
+ *  @brief 闹钟倒计时
+ *
+ *  @param time 剩余秒数
+ *  @param time 一个周期（分钟）
+ */
+-(void)tickTackWithTime:(NSNumber*)time andDuration:(int)pomodoroDuration{
+    NSString *strTime = @"番茄时间";
+    if (time.integerValue>0) {
+        self.pomodoroImg.hidden = YES;
+        self.timeLabel.hidden = NO;
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"mm:ss"];
+         strTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time.integerValue-1]];
+    }else if(time){
+        self.pomodoroImg.hidden = NO;
+        self.timeLabel.hidden = YES;
+        self.timeLayer.strokeStart = 0;
+        [self alarm];
+    }
+    self.timeLabel.text = strTime;
+    self.timeLayer.strokeStart += 1.f/(pomodoroDuration*60);
+    if (time.integerValue%2) {
+        self.timeLayer.strokeColor = [UIColor blueColor].CGColor;
+    }else{
+        self.timeLayer.strokeColor = [UIColor redColor].CGColor;
+    }
+}
+
+-(void)alarm{
+//    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    //循环调用
+//    AudioServicesAddSystemSoundCompletion(kSystemSoundID_Vibrate, NULL, NULL,systemAudioCallback, NULL);
+//    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    SystemSoundID soundID;
+    NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"梦幻" ofType:@"caf"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
+    NSDate *alarmDate = [NSDate date];
+    AudioServicesPlaySystemSoundWithCompletion(soundID, ^{
+        NSDate *date = [NSDate date];
+        NSTimeInterval secondsInterval= [date timeIntervalSinceDate:alarmDate];
+        //根据时间间隔判断是否静音
+        if (secondsInterval>0.5f) {
+            AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate);
+        }else{
+            //十秒后自动关闭震动
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate);
+            });
+        }
+    });
+    
+    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate);
+        AudioServicesRemoveSystemSoundCompletion(soundID);
+        AudioServicesDisposeSystemSoundID(soundID);
     }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate);
+        AudioServicesRemoveSystemSoundCompletion(soundID);
+        AudioServicesDisposeSystemSoundID(soundID);
+    }];
+    
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"不要着急，不要着急，休息，休息一下~" preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:continueAction];
+    [alertVC addAction:cancelAction];
+    [self  presentViewController:alertVC animated:YES completion:^{
+    }];
+    
+}
+
+-(void)setLocalNotification:(NSDate *)assginDate{
+    
+    
+    UILocalNotification *notification       = [[UILocalNotification alloc] init];
+    notification.fireDate                   = assginDate;
+    notification.repeatCalendar             = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    notification.repeatInterval             = NSMinuteCalendarUnit;
+    //    NSMinuteCalendarUnit
+    notification.timeZone                   = [NSTimeZone localTimeZone];
+    notification.alertBody                  = @"不要着急，不要着急，休息，休息一下~";
+    notification.soundName                  = @"梦幻.caf";//UILocalNotificationDefaultSoundName;
+    //    notification.alertAction                = @"再不疯狂我们就老了";
+    notification.applicationIconBadgeNumber = 1;
+    notification.userInfo=@{@"isAlarm":@"is"};
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//    [self setCustomEventNotification];
+    
+}
+
+
+-(void)clearLocalNotification{
+    
+    
+    //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    //取消某一个通知
+    NSArray *notificaitons = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    //获取当前所有的本地通知
+    if (!notificaitons || notificaitons.count <= 0) {
+        return;
+    }
+    
+    for (UILocalNotification *notify in notificaitons) {
+        NSArray *arr=[notify.userInfo allKeys];
+        
+        if ([arr containsObject:@"isAlarm"])
+        {
+            //取消一个特定的通知
+            [[UIApplication sharedApplication] cancelLocalNotification:notify];
+            break;
+        }
+    }
+    
+    
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+//    [self removeCustomEventNotification];
+//    
+//    [self stopBgm];
+    
+}
+
+//c语言 循环调用
+static void systemAudioCallback(){
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
 @end

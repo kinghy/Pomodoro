@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PomodoroViewController">
             <connections>
                 <outlet property="pomodoroImg" destination="IEj-wX-eGT" id="b3H-lj-BTu"/>
+                <outlet property="startBtn" destination="E2N-Cp-2ns" id="LnG-HT-Kax"/>
                 <outlet property="timeLabel" destination="kVT-cD-dcD" id="lr7-NP-zqw"/>
                 <outlet property="timeView" destination="829-lB-lof" id="bw0-Dc-kpz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -19,23 +20,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2N-Cp-2ns">
-                    <rect key="frame" x="81" y="419" width="30" height="30"/>
+                    <rect key="frame" x="87" y="419" width="30" height="30"/>
                     <state key="normal" title="开始"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7f-aW-JDH">
-                    <rect key="frame" x="167" y="419" width="30" height="30"/>
+                    <rect key="frame" x="192" y="419" width="30" height="30"/>
                     <state key="normal" title="结束"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwF-e7-RyJ">
-                    <rect key="frame" x="282" y="419" width="30" height="30"/>
+                    <rect key="frame" x="297" y="419" width="30" height="30"/>
                     <state key="normal" title="暂停"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTK-bh-BOF">
-                    <rect key="frame" x="175" y="519" width="30" height="30"/>
+                    <rect key="frame" x="192" y="518" width="30" height="30"/>
                     <state key="normal" title="中断"/>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="829-lB-lof">
-                    <rect key="frame" x="87" y="108" width="240" height="240"/>
+                    <rect key="frame" x="87" y="149" width="240" height="240"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVT-cD-dcD">
                             <rect key="frame" x="0.0" y="109" width="240" height="21"/>
@@ -43,12 +44,18 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pomodoro.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="IEj-wX-eGT">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pomodoro.png" translatesAutoresizingMaskIntoConstraints="NO" id="IEj-wX-eGT">
                             <rect key="frame" x="41" y="58" width="159" height="124"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="番茄时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBO-gP-ws2">
+                    <rect key="frame" x="8" y="88" width="398" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -56,6 +63,6 @@
         </view>
     </objects>
     <resources>
-        <image name="pomodoro.jpg" width="424" height="332"/>
+        <image name="pomodoro.png" width="424" height="332"/>
     </resources>
 </document>

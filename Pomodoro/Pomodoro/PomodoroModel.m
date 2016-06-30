@@ -16,44 +16,55 @@
 #define kResetShortVal 5
 #define kResetLongVal 30
 
+@interface PomodoroModel()
+@property (nonatomic) BOOL isStart;
+
+@end
+
 @implementation PomodoroModel
 -(void)viewModelDidLoad{
     //默认一个番茄时间25分钟，休息5分钟
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     _pomodoroDuration = [ud objectForKey:kPomodoroKey]? [[ud objectForKey:kPomodoroKey] intValue] :kPomodoroVal;
-    _resetShortDuration = [ud objectForKey:kResetShortKey]? [[ud objectForKey:kResetShortKey] intValue] :kResetShortVal;
-    _pomodoroDuration = [ud objectForKey:kPomodoroKey]? [[ud objectForKey:kPomodoroKey] intValue] :kPomodoroVal;
-    _clockType = ClockTypePomodoro;
+    
     _remainingTime = 0;
+    
+    _isStart = NO;
+    
+    @weakify(self)
+    self.startCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            @strongify(self)
+            [self startPomodoroTime];
+            [subscriber sendNext:@1];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+        
+    }];
 }
 
 -(void)startPomodoroTime{
-    if (_clockType == ClockTypePomodoro) {
+    if (!_isStart) {
         @weakify(self)
         [[[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]] takeUntilBlock:^BOOL(id x) {
             @strongify(self)
             return  self.remainingTime?(self.remainingTime.integerValue <= 0):false;
         }] subscribeNext:^(id x) {
             @strongify(self)
-            if (self.remainingTime == 0) {
+            if (!self.remainingTime || self.remainingTime.integerValue == 0) {
                 self.remainingTime = @(self.pomodoroDuration*60);
             }else{
                 self.remainingTime = [NSNumber numberWithInteger:self.remainingTime.integerValue - 1 ];
             }
-        } ];
+            self.isStart = YES;
+        } completed:^{
+            self.isStart = NO;
+            self.remainingTime = nil;
+        }];
     }
-}
-
--(void)setResetLongDuration:(int)resetLongDuration{
-    _resetLongDuration = resetLongDuration;
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:resetLongDuration]  forKey:kResetLongKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
--(void)setResetShortDuration:(int)resetShortDuration{
-    _resetShortDuration = resetShortDuration;
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber  numberWithInt:resetShortDuration]  forKey:kResetShortKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 }
 
 -(void)setPomodoroDuration:(int)pomodoroDuration{
@@ -63,4 +74,5 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
+
 @end
