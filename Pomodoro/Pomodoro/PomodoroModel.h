@@ -8,6 +8,14 @@
 
 #import "EFHeader.h"
 
+typedef enum {
+    ClockStatusInit,
+    ClockStatusRunning,
+    ClockStatusFinished,//时间耗尽
+    ClockStatusStoped,//提早完成
+    ClockStatusPaused
+} ClockStatus;
+
 @interface PomodoroModel : EFBaseViewModel
 @property (nonatomic,strong) NSNumber* remainingTime;//剩余时间，秒
 
@@ -16,6 +24,15 @@
  *  @brief 开始番茄时间信号
  */
 @property (strong, nonatomic)  RACCommand* startCmd;
+
+/*!
+ *  @brief 关闭番茄时间信号
+ */
+@property (strong, nonatomic)  RACCommand* stopCmd;
+/*!
+ *  @brief 时钟状态
+ */
+@property (nonatomic,readonly) ClockStatus clockStatus;
 
 /*!
  *  @brief 开始番茄时间

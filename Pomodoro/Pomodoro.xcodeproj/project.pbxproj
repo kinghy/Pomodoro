@@ -13,7 +13,7 @@
 		7C974BB51D24AEDD0025411A /* we are the world.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BAE1D24AEDD0025411A /* we are the world.caf */; };
 		7C974BB61D24AEDD0025411A /* Yellow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BAF1D24AEDD0025411A /* Yellow.caf */; };
 		7C974BB71D24AEDD0025411A /* 命运交响曲.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BB01D24AEDD0025411A /* 命运交响曲.caf */; };
-		7C974BB81D24AEDD0025411A /* 梦幻.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BB11D24AEDD0025411A /* 梦幻.caf */; };
+		7C974BB81D24AEDD0025411A /* dream.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BB11D24AEDD0025411A /* dream.caf */; };
 		7C974BB91D24AEDD0025411A /* 欢乐颂.caf in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BB21D24AEDD0025411A /* 欢乐颂.caf */; };
 		7C974BBB1D24B5FE0025411A /* pomodoro.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C974BBA1D24B5FE0025411A /* pomodoro.png */; };
 		7CC2B3041D224A6F00032751 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2B3031D224A6F00032751 /* main.m */; };
@@ -52,7 +52,7 @@
 		7C974BAE1D24AEDD0025411A /* we are the world.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "we are the world.caf"; sourceTree = "<group>"; };
 		7C974BAF1D24AEDD0025411A /* Yellow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Yellow.caf; sourceTree = "<group>"; };
 		7C974BB01D24AEDD0025411A /* 命运交响曲.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "命运交响曲.caf"; sourceTree = "<group>"; };
-		7C974BB11D24AEDD0025411A /* 梦幻.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "梦幻.caf"; sourceTree = "<group>"; };
+		7C974BB11D24AEDD0025411A /* dream.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dream.caf; sourceTree = "<group>"; };
 		7C974BB21D24AEDD0025411A /* 欢乐颂.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "欢乐颂.caf"; sourceTree = "<group>"; };
 		7C974BBA1D24B5FE0025411A /* pomodoro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pomodoro.png; sourceTree = "<group>"; };
 		7C974BBC1D24BD6F0025411A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -137,7 +137,7 @@
 				7C974BAE1D24AEDD0025411A /* we are the world.caf */,
 				7C974BAF1D24AEDD0025411A /* Yellow.caf */,
 				7C974BB01D24AEDD0025411A /* 命运交响曲.caf */,
-				7C974BB11D24AEDD0025411A /* 梦幻.caf */,
+				7C974BB11D24AEDD0025411A /* dream.caf */,
 				7C974BB21D24AEDD0025411A /* 欢乐颂.caf */,
 			);
 			path = Ring;
@@ -324,7 +324,7 @@
 				7CC2B3121D224A6F00032751 /* LaunchScreen.storyboard in Resources */,
 				7CC2B3391D224C9C00032751 /* PomodoroViewController.xib in Resources */,
 				7C974BB71D24AEDD0025411A /* 命运交响曲.caf in Resources */,
-				7C974BB81D24AEDD0025411A /* 梦幻.caf in Resources */,
+				7C974BB81D24AEDD0025411A /* dream.caf in Resources */,
 				7C974BBB1D24B5FE0025411A /* pomodoro.png in Resources */,
 				7C974BB51D24AEDD0025411A /* we are the world.caf in Resources */,
 				7C974BB91D24AEDD0025411A /* 欢乐颂.caf in Resources */,

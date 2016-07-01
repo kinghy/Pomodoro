@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="pomodoroImg" destination="IEj-wX-eGT" id="b3H-lj-BTu"/>
                 <outlet property="startBtn" destination="E2N-Cp-2ns" id="LnG-HT-Kax"/>
+                <outlet property="stopBtn" destination="g7f-aW-JDH" id="vrF-4a-Efk"/>
                 <outlet property="timeLabel" destination="kVT-cD-dcD" id="lr7-NP-zqw"/>
                 <outlet property="timeView" destination="829-lB-lof" id="bw0-Dc-kpz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

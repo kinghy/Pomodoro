@@ -17,8 +17,8 @@
 #define kResetLongVal 30
 
 @interface PomodoroModel()
-@property (nonatomic) BOOL isStart;
 
+@property (nonatomic) NSInteger startTime;
 @end
 
 @implementation PomodoroModel
@@ -29,7 +29,7 @@
     
     _remainingTime = 0;
     
-    _isStart = NO;
+    _clockStatus = ClockStatusInit;
     
     @weakify(self)
     self.startCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -43,10 +43,22 @@
         }];
         
     }];
+    
+    self.stopCmd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            @strongify(self)
+            [self stopPomodoroTime];
+            [subscriber sendNext:@1];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+        
+    }];
 }
 
 -(void)startPomodoroTime{
-    if (!_isStart) {
+    if (self.clockStatus != ClockStatusRunning) {
         @weakify(self)
         [[[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]] takeUntilBlock:^BOOL(id x) {
             @strongify(self)
@@ -54,17 +66,26 @@
         }] subscribeNext:^(id x) {
             @strongify(self)
             if (!self.remainingTime || self.remainingTime.integerValue == 0) {
-                self.remainingTime = @(self.pomodoroDuration*60);
+                self.remainingTime = @(self.pomodoroDuration*60-1);
+                self.startTime = [NSDate date].timeIntervalSince1970;
+                _clockStatus = ClockStatusRunning;
             }else{
-                self.remainingTime = [NSNumber numberWithInteger:self.remainingTime.integerValue - 1 ];
+                NSInteger interval = self.pomodoroDuration*60 - ([NSDate date].timeIntervalSince1970 - self.startTime);
+                interval = interval>=0?interval:0;
+                self.remainingTime = @(interval);
             }
-            self.isStart = YES;
         } completed:^{
-            self.isStart = NO;
+            _clockStatus = ClockStatusFinished;
             self.remainingTime = nil;
         }];
     }
-    
+}
+
+-(void)stopPomodoroTime{
+    if (self.clockStatus == ClockStatusRunning) {
+        self.remainingTime = @0;
+        _clockStatus = ClockStatusStoped;
+    }
 }
 
 -(void)setPomodoroDuration:(int)pomodoroDuration{

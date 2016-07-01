@@ -18,6 +18,7 @@
 @property (nonatomic,strong) CAShapeLayer *timeLayer;
 @property (weak, nonatomic) IBOutlet UIImageView *pomodoroImg;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
+@property (weak, nonatomic) IBOutlet UIButton *stopBtn;
 
 @end
 
@@ -36,7 +37,7 @@
     // Do any additional setup after loading the view from its nib.
 
     
-    [self alarm];
+//    [self alarm];
     //创建出CAShapeLayer
     self.timeLayer = [CAShapeLayer layer];
     self.timeLayer.frame = self.timeView.bounds;//设置shapeLayer的尺寸和位置
@@ -52,6 +53,10 @@
     //让贝塞尔曲线与CAShapeLayer产生联系
     self.timeLayer.path = circlePath.CGPath;
     [self.timeView.layer addSublayer:self.timeLayer];
+    
+    
+
+
 }
 
 -(void)bindViewModel{
@@ -64,7 +69,11 @@
         }];
         self.startBtn.rac_command = model.startCmd;
         [self.startBtn.rac_command.executionSignals subscribeNext:^(id x) {
-            [self setLocalNotification:[NSDate dateWithTimeIntervalSinceNow:model.pomodoroDuration]];
+            [self setLocalNotification:[NSDate dateWithTimeIntervalSinceNow:model.pomodoroDuration*60]];
+        }];
+        self.stopBtn.rac_command = model.stopCmd;
+        [self.stopBtn.rac_command.executionSignals subscribeNext:^(id x) {
+            [self clearLocalNotification];
         }];
 
     }
@@ -93,20 +102,30 @@
  */
 -(void)tickTackWithTime:(NSNumber*)time andDuration:(int)pomodoroDuration{
     NSString *strTime = @"番茄时间";
-    if (time.integerValue>0) {
-        self.pomodoroImg.hidden = YES;
-        self.timeLabel.hidden = NO;
-        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"mm:ss"];
-         strTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time.integerValue-1]];
-    }else if(time){
+    if(time && time.integerValue<=0){
+        @weakify(self)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            @strongify(self)
+            self.pomodoroImg.hidden = NO;
+            self.timeLabel.hidden = YES;
+            self.timeLayer.strokeStart = 0;
+            self.timeLabel.text = @"番茄时间";
+            [self alarm];
+        });
+    }
+    
+    if (!time) {
         self.pomodoroImg.hidden = NO;
         self.timeLabel.hidden = YES;
-        self.timeLayer.strokeStart = 0;
-        [self alarm];
+    }else{
+        self.pomodoroImg.hidden = YES;
+        self.timeLabel.hidden = NO;
     }
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"mm:ss"];
+    strTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time.integerValue]];
     self.timeLabel.text = strTime;
-    self.timeLayer.strokeStart += 1.f/(pomodoroDuration*60);
+    self.timeLayer.strokeStart = 1 - time.floatValue/(pomodoroDuration*60);
     if (time.integerValue%2) {
         self.timeLayer.strokeColor = [UIColor blueColor].CGColor;
     }else{
@@ -117,10 +136,10 @@
 -(void)alarm{
 //    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     //循环调用
-//    AudioServicesAddSystemSoundCompletion(kSystemSoundID_Vibrate, NULL, NULL,systemAudioCallback, NULL);
+    AudioServicesAddSystemSoundCompletion(kSystemSoundID_Vibrate, NULL, NULL,systemAudioCallback, NULL);
 //    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     SystemSoundID soundID;
-    NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"梦幻" ofType:@"caf"];
+    NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"dream" ofType:@"caf"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
     NSDate *alarmDate = [NSDate date];
     AudioServicesPlaySystemSoundWithCompletion(soundID, ^{
@@ -155,33 +174,31 @@
     [self  presentViewController:alertVC animated:YES completion:^{
     }];
     
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
 }
 
 -(void)setLocalNotification:(NSDate *)assginDate{
     
-    
     UILocalNotification *notification       = [[UILocalNotification alloc] init];
     notification.fireDate                   = assginDate;
-    notification.repeatCalendar             = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//    notification.repeatInterval             = NSMinuteCalendarUnit;
+    //设置推送时间，这里使用相对时间，如果fireDate采用GTM标准时间，timeZone可以至nil
+    notification.timeZone                   = [NSTimeZone defaultTimeZone];
+    notification.repeatInterval             = 0;
     //    NSMinuteCalendarUnit
     notification.timeZone                   = [NSTimeZone localTimeZone];
     notification.alertBody                  = @"不要着急，不要着急，休息，休息一下~";
-    notification.soundName                  = @"梦幻.caf";//UILocalNotificationDefaultSoundName;
-    //    notification.alertAction                = @"再不疯狂我们就老了";
+//    notification.soundName = [[NSBundle mainBundle] pathForResource:@"梦幻" ofType:@"caf"];
+    notification.soundName                  = @"dream.caf";//UILocalNotificationDefaultSoundName;
+    notification.alertAction                = @"再不疯狂我们就老了";
     notification.applicationIconBadgeNumber = 1;
     notification.userInfo=@{@"isAlarm":@"is"};
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-//    [self setCustomEventNotification];
-    
 }
 
 
 -(void)clearLocalNotification{
-    
-    
-    //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     //取消某一个通知
     NSArray *notificaitons = [[UIApplication sharedApplication] scheduledLocalNotifications];
@@ -200,15 +217,9 @@
             break;
         }
     }
-    
-    
-    
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-//    [self removeCustomEventNotification];
-//    
-//    [self stopBgm];
-    
 }
+
 
 //c语言 循环调用
 static void systemAudioCallback(){
